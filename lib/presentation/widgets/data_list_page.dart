@@ -215,11 +215,13 @@ Widget recordCard({
   required IconData icon,
   required String title,
   required List<String> subtitleLines,
+  Color? backgroundColor,
+  Color? leadingColor,
 }) {
   return Container(
     margin: const EdgeInsets.only(bottom: 12),
     decoration: BoxDecoration(
-      color: Colors.white,
+      color: backgroundColor ?? Colors.white,
       borderRadius: BorderRadius.circular(16),
       border: Border.all(color: const Color(0xFFD6E1EE)),
       boxShadow: const [
@@ -236,10 +238,10 @@ Widget recordCard({
         width: 42,
         height: 42,
         decoration: BoxDecoration(
-          color: const Color(0xFFE6F0FA),
+          color: leadingColor?.withValues(alpha: 0.1) ?? const Color(0xFFE6F0FA),
           borderRadius: BorderRadius.circular(12),
         ),
-        child: Icon(icon, color: const Color(0xFF0E4A7B)),
+        child: Icon(icon, color: leadingColor ?? const Color(0xFF0E4A7B)),
       ),
       title: Text(title, style: const TextStyle(fontWeight: FontWeight.w700)),
       subtitle: Padding(

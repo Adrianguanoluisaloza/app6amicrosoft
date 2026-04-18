@@ -228,6 +228,8 @@ class EstadocivilPage extends StatelessWidget {
         icon: Icons.favorite,
         title: item.nombre,
         subtitleLines: ['ID: ${item.idestadocivil}'],
+        backgroundColor: Colors.green.shade50,
+        leadingColor: Colors.green.shade700,
       ),
     );
   }
