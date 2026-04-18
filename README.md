@@ -16,10 +16,10 @@ Este proyecto permite visualizar informacion de las tablas sexo, persona, direcc
 
 - Base API (VPS): http://134.209.126.53/phpapi/api.php
 - Endpoint Sexo: http://134.209.126.53/phpapi/api.php?table=sexo
-- Endpoint Persona: http://134.209.126.53/phpapi/api.php?table=persona
-- Endpoint Direccion: http://134.209.126.53/phpapi/api.php?table=direccion
-- Endpoint Telefono: http://134.209.126.53/phpapi/api.php?table=telefono
-- Endpoint Estado Civil: http://134.209.126.53/phpapi/api.php?table=estadocivil
+- Endpoint Persona: http://134.209.126.53/phpapi.php?table=persona
+- Endpoint Direccion: http://134.209.126.53/phpapi.php?table=direccion
+- Endpoint Telefono: http://134.209.126.53/phpapi.php?table=telefono
+- Endpoint Estado Civil: http://134.209.126.53/phpapi.php?table=estadocivil
 
 ## Contribuciones
 
@@ -27,3 +27,4 @@ Este proyecto permite visualizar informacion de las tablas sexo, persona, direcc
 |---|---|
 | Tadeo Ballesteros | Personas — diseño con avatar de iniciales y chips de color |
 | Adrian Guanoluisa | Sexo — mejora visual de tarjetas, iconografia y estilo moderno |
+| David Corozo | Estado civil — modificación de la tabla a color verde |
