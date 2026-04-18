@@ -1,6 +1,6 @@
 {
-    "name": "app6bmicrosoft",
-    "short_name": "app6bmicrosoft",
+    "name": "app6amicrosoft",
+    "short_name": "app6amicrosoft",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
