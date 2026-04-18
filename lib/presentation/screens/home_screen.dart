@@ -178,10 +178,98 @@ class SexoPage extends StatelessWidget {
         final q = query.toLowerCase();
         return item.nombre.toLowerCase().contains(q) || item.idsexo.contains(q);
       },
-      itemBuilder: (context, item) => recordCard(
-        icon: Icons.wc,
-        title: item.nombre,
-        subtitleLines: ['ID: ${item.idsexo}'],
+      itemBuilder: (context, item) => _SexoCard(sexo: item),
+    );
+  }
+}
+
+class _SexoCard extends StatelessWidget {
+  final Sexo sexo;
+
+  const _SexoCard({required this.sexo});
+
+  Color get _tone {
+    final value = sexo.nombre.toLowerCase();
+    if (value.contains('mas') || value.contains('hom')) return const Color(0xFF1C6BB0);
+    if (value.contains('fem') || value.contains('muj')) return const Color(0xFFB0456B);
+    return const Color(0xFF0EA5A5);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [Color(0xFFFFFFFF), Color(0xFFF7FAFE)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: const Color(0xFFD7E3F0)),
+        boxShadow: const [
+          BoxShadow(
+            color: Color(0x1A123A61),
+            blurRadius: 14,
+            offset: Offset(0, 5),
+          ),
+        ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(14),
+        child: Row(
+          children: [
+            Container(
+              height: 48,
+              width: 48,
+              decoration: BoxDecoration(
+                color: _tone.withValues(alpha: 0.14),
+                borderRadius: BorderRadius.circular(14),
+              ),
+              child: Icon(Icons.wc, color: _tone),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    sexo.nombre,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w800,
+                      color: Color(0xFF142B3F),
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Codigo: ${sexo.idsexo}',
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: Color(0xFF5E7388),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              decoration: BoxDecoration(
+                color: _tone.withValues(alpha: 0.12),
+                borderRadius: BorderRadius.circular(999),
+                border: Border.all(color: _tone.withValues(alpha: 0.35)),
+              ),
+              child: Text(
+                sexo.idsexo,
+                style: TextStyle(
+                  color: _tone,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 11,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
