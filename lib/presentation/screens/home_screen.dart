@@ -21,7 +21,7 @@ class _MainScreenState extends State<MainScreen> {
       length: 6,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Equipo Microsoft 6AA'),
+          title: const Text('Equipo Microsoft 6A'),
           actions: [
             Container(
               margin: const EdgeInsets.only(right: 12),
