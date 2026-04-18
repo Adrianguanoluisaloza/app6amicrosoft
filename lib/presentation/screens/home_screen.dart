@@ -178,10 +178,98 @@ class SexoPage extends StatelessWidget {
         final q = query.toLowerCase();
         return item.nombre.toLowerCase().contains(q) || item.idsexo.contains(q);
       },
-      itemBuilder: (context, item) => recordCard(
-        icon: Icons.wc,
-        title: item.nombre,
-        subtitleLines: ['ID: ${item.idsexo}'],
+      itemBuilder: (context, item) => _SexoCard(sexo: item),
+    );
+  }
+}
+
+class _SexoCard extends StatelessWidget {
+  final Sexo sexo;
+
+  const _SexoCard({required this.sexo});
+
+  Color get _tone {
+    final value = sexo.nombre.toLowerCase();
+    if (value.contains('mas') || value.contains('hom')) return const Color(0xFF1C6BB0);
+    if (value.contains('fem') || value.contains('muj')) return const Color(0xFFB0456B);
+    return const Color(0xFF0EA5A5);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [Color(0xFFFFFFFF), Color(0xFFF7FAFE)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: const Color(0xFFD7E3F0)),
+        boxShadow: const [
+          BoxShadow(
+            color: Color(0x1A123A61),
+            blurRadius: 14,
+            offset: Offset(0, 5),
+          ),
+        ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(14),
+        child: Row(
+          children: [
+            Container(
+              height: 48,
+              width: 48,
+              decoration: BoxDecoration(
+                color: _tone.withValues(alpha: 0.14),
+                borderRadius: BorderRadius.circular(14),
+              ),
+              child: Icon(Icons.wc, color: _tone),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    sexo.nombre,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w800,
+                      color: Color(0xFF142B3F),
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Codigo: ${sexo.idsexo}',
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: Color(0xFF5E7388),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              decoration: BoxDecoration(
+                color: _tone.withValues(alpha: 0.12),
+                borderRadius: BorderRadius.circular(999),
+                border: Border.all(color: _tone.withValues(alpha: 0.35)),
+              ),
+              child: Text(
+                sexo.idsexo,
+                style: TextStyle(
+                  color: _tone,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 11,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -276,15 +364,139 @@ class PersonaPage extends StatelessWidget {
             item.apellidos.toLowerCase().contains(q) ||
             item.fechanacimiento.toLowerCase().contains(q);
       },
-      itemBuilder: (context, item) => recordCard(
-        icon: Icons.person,
-        title: '${item.nombres} ${item.apellidos}',
-        subtitleLines: [
-          'ID: ${item.idpersona}',
-          'Fecha: ${item.fechanacimiento}',
-          'Sexo: ${item.elsexo}',
-          'Estado civil: ${item.elestadocivil}',
+      // ── Diseño mejorado por Tadeo Ballesteros ──
+      itemBuilder: (context, item) => _PersonaCard(persona: item),
+    );
+  }
+}
+
+class _PersonaCard extends StatelessWidget {
+  final Persona persona;
+
+  const _PersonaCard({required this.persona});
+
+  // Iniciales del avatar
+  String get _initials {
+    final n = persona.nombres.isNotEmpty ? persona.nombres[0] : '';
+    final a = persona.apellidos.isNotEmpty ? persona.apellidos[0] : '';
+    return '$n$a'.toUpperCase();
+  }
+
+  // Color según sexo
+  Color get _avatarColor {
+    final sexo = persona.elsexo.toLowerCase();
+    if (sexo.contains('mas') || sexo.contains('hom')) return const Color(0xFF1C6BB0);
+    if (sexo.contains('fem') || sexo.contains('muj')) return const Color(0xFFB0456B);
+    return const Color(0xFF0EA5A5);
+  }
+
+  // Color chip estado civil
+  Color get _estadoColor {
+    final e = persona.elestadocivil.toLowerCase();
+    if (e.contains('solt')) return const Color(0xFF0EA5A5);
+    if (e.contains('cas'))  return const Color(0xFF2E7D32);
+    if (e.contains('divor')) return const Color(0xFFB0456B);
+    return const Color(0xFF16548A);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: const Color(0xFFD6E1EE)),
+        boxShadow: const [
+          BoxShadow(
+            color: Color(0x180E2B4D),
+            blurRadius: 12,
+            offset: Offset(0, 4),
+          ),
         ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(14),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Avatar con iniciales
+            CircleAvatar(
+              radius: 26,
+              backgroundColor: _avatarColor,
+              child: Text(
+                _initials,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w800,
+                  fontSize: 16,
+                ),
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Nombre completo
+                  Text(
+                    '${persona.nombres} ${persona.apellidos}',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w800,
+                      fontSize: 15,
+                      color: Color(0xFF13283A),
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  // ID y fecha
+                  Text(
+                    'ID: ${persona.idpersona}  ·  Nac: ${persona.fechanacimiento}',
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: Color(0xFF5A6D80),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  // Chips sexo + estado civil
+                  Wrap(
+                    spacing: 6,
+                    children: [
+                      _Chip(label: persona.elsexo, color: _avatarColor),
+                      _Chip(label: persona.elestadocivil, color: _estadoColor),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _Chip extends StatelessWidget {
+  final String label;
+  final Color color;
+
+  const _Chip({required this.label, required this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.12),
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: color.withValues(alpha: 0.35)),
+      ),
+      child: Text(
+        label,
+        style: TextStyle(
+          fontSize: 11,
+          fontWeight: FontWeight.w700,
+          color: color,
+        ),
       ),
     );
   }
