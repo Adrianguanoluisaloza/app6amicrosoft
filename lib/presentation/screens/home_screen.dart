@@ -284,7 +284,8 @@ class TelefonoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return DataListPage<Telefono>(
       loader: repository.getTelefonos,
-      searchHint: 'Buscar telefono por numero o ID',
+      searchHint: 'Buscar telefono por numero o id',
+      accentColor: Colors.green.shade700,
       matcher: (item, query) {
         final q = query.toLowerCase();
         return item.numero.toLowerCase().contains(q) || item.idtelefono.contains(q);
@@ -293,6 +294,8 @@ class TelefonoPage extends StatelessWidget {
         icon: Icons.phone,
         title: item.numero,
         subtitleLines: ['ID: ${item.idtelefono}'],
+        backgroundColor: Colors.green.shade50,
+        leadingColor: Colors.green.shade700,
       ),
     );
   }

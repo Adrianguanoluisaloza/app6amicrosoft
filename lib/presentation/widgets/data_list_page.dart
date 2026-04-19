@@ -7,6 +7,7 @@ class DataListPage<T> extends StatefulWidget {
   final String searchHint;
   final bool Function(T item, String query) matcher;
   final Widget Function(BuildContext context, T item) itemBuilder;
+  final Color accentColor;
 
   const DataListPage({
     super.key,
@@ -14,6 +15,7 @@ class DataListPage<T> extends StatefulWidget {
     required this.searchHint,
     required this.matcher,
     required this.itemBuilder,
+    this.accentColor = const Color(0xFF0E4A7B),
   });
 
   @override
@@ -120,7 +122,7 @@ class _DataListPageState<T> extends State<DataListPage<T>> {
       },
       decoration: InputDecoration(
         hintText: widget.searchHint,
-        prefixIcon: const Icon(Icons.search, color: Color(0xFF0E4A7B)),
+        prefixIcon: Icon(Icons.search, color: widget.accentColor),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppTokens.radiusLg),
           borderSide: const BorderSide(color: AppTokens.border),
@@ -131,7 +133,7 @@ class _DataListPageState<T> extends State<DataListPage<T>> {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppTokens.radiusLg),
-          borderSide: const BorderSide(color: AppTokens.brand700, width: 1.4),
+          borderSide: BorderSide(color: widget.accentColor, width: 1.4),
         ),
         filled: true,
         fillColor: Colors.white,

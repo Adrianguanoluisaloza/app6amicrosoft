@@ -28,3 +28,4 @@ Este proyecto permite visualizar informacion de las tablas sexo, persona, direcc
 | Tadeo Ballesteros | Personas — diseño con avatar de iniciales y chips de color |
 | Adrian Guanoluisa | Sexo — mejora visual de tarjetas, iconografia y estilo moderno |
 | David Corozo | Estado civil — modificación de la tabla a color verde |
+| Franco Herrera Alex | Teléfono — interfaz minimalista en color verde |
