@@ -354,6 +354,7 @@ class EstadocivilPage extends StatelessWidget {
   }
 }
 
+// Modificado por Rocio Alvarado - Cambios en colores y configuración
 class DireccionPage extends StatelessWidget {
   final DataLoader<Direccion> loader;
 
