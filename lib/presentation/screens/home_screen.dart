@@ -378,7 +378,7 @@ class DireccionPage extends StatelessWidget {
     );
   }
 }
-
+//lely mejore este 
 class PersonaPage extends StatelessWidget {
   final DataLoader<Persona> loader;
 
