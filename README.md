@@ -14,7 +14,7 @@ Este proyecto permite visualizar informacion de las tablas sexo, persona, direcc
 
 ## Nota academica sobre consumo de API
 
-Se mantiene el archivo `lib/data/api_repository.dart` como referencia de buenas practicas (patron repositorio) para separar responsabilidades y facilitar mantenimiento.
+Se mantiene el archivo `lib/data/api_repository.dart` como referencia de buenas prácticas (patrón repositorio) para separar responsabilidades y facilitar mantenimiento.
 
 Sin embargo, para cumplir el requerimiento academico de consumo directo, en ejecucion la app usa llamadas HTTP implementadas en `lib/main.dart` para las tablas `sexo`, `telefono`, `persona`, `direccion` y `estadocivil`.
 
