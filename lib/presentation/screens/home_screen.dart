@@ -1,20 +1,30 @@
 import 'package:flutter/material.dart';
 
-import '../../data/api_repository.dart';
 import '../../data/models.dart';
 import '../theme/app_theme.dart';
 import '../widgets/data_list_page.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+  final Future<List<Sexo>> Function() getSexos;
+  final Future<List<Telefono>> Function() getTelefonos;
+  final Future<List<Persona>> Function() getPersonas;
+  final Future<List<Direccion>> Function() getDirecciones;
+  final Future<List<Estadocivil>> Function() getEstadosCiviles;
+
+  const MainScreen({
+    super.key,
+    required this.getSexos,
+    required this.getTelefonos,
+    required this.getPersonas,
+    required this.getDirecciones,
+    required this.getEstadosCiviles,
+  });
 
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final ApiRepository _repository = ApiRepository();
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -54,15 +64,21 @@ class _MainScreenState extends State<MainScreen> {
         ),
         body: Column(
           children: [
-            _DashboardStrip(repository: _repository),
+            _DashboardStrip(
+              getSexos: widget.getSexos,
+              getPersonas: widget.getPersonas,
+              getDirecciones: widget.getDirecciones,
+              getTelefonos: widget.getTelefonos,
+              getEstadosCiviles: widget.getEstadosCiviles,
+            ),
             Expanded(
               child: TabBarView(
                 children: [
-                  SexoPage(repository: _repository),
-                  TelefonoPage(repository: _repository),
-                  PersonaPage(repository: _repository),
-                  EstadocivilPage(repository: _repository),
-                  DireccionPage(repository: _repository),
+                  SexoPage(getSexos: widget.getSexos),
+                  TelefonoPage(getTelefonos: widget.getTelefonos),
+                  PersonaPage(getPersonas: widget.getPersonas),
+                  EstadocivilPage(getEstadosCiviles: widget.getEstadosCiviles),
+                  DireccionPage(getDirecciones: widget.getDirecciones),
                   const AboutPage(),
                 ],
               ),
@@ -75,19 +91,29 @@ class _MainScreenState extends State<MainScreen> {
 }
 
 class _DashboardStrip extends StatelessWidget {
-  final ApiRepository repository;
+  final Future<List<Sexo>> Function() getSexos;
+  final Future<List<Persona>> Function() getPersonas;
+  final Future<List<Direccion>> Function() getDirecciones;
+  final Future<List<Telefono>> Function() getTelefonos;
+  final Future<List<Estadocivil>> Function() getEstadosCiviles;
 
-  const _DashboardStrip({required this.repository});
+  const _DashboardStrip({
+    required this.getSexos,
+    required this.getPersonas,
+    required this.getDirecciones,
+    required this.getTelefonos,
+    required this.getEstadosCiviles,
+  });
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<int>>(
       future: Future.wait<int>([
-        repository.getSexos().then((v) => v.length),
-        repository.getPersonas().then((v) => v.length),
-        repository.getDirecciones().then((v) => v.length),
-        repository.getTelefonos().then((v) => v.length),
-        repository.getEstadosCiviles().then((v) => v.length),
+        getSexos().then((v) => v.length),
+        getPersonas().then((v) => v.length),
+        getDirecciones().then((v) => v.length),
+        getTelefonos().then((v) => v.length),
+        getEstadosCiviles().then((v) => v.length),
       ]),
       builder: (context, snapshot) {
         final values = snapshot.data ?? [0, 0, 0, 0, 0];
@@ -165,14 +191,14 @@ class _MetricCard extends StatelessWidget {
 }
 
 class SexoPage extends StatelessWidget {
-  final ApiRepository repository;
+  final Future<List<Sexo>> Function() getSexos;
 
-  const SexoPage({super.key, required this.repository});
+  const SexoPage({super.key, required this.getSexos});
 
   @override
   Widget build(BuildContext context) {
     return DataListPage<Sexo>(
-      loader: repository.getSexos,
+      loader: getSexos,
       searchHint: 'Buscar sexo por nombre o ID',
       matcher: (item, query) {
         final q = query.toLowerCase();
@@ -276,14 +302,14 @@ class _SexoCard extends StatelessWidget {
 }
 
 class TelefonoPage extends StatelessWidget {
-  final ApiRepository repository;
+  final Future<List<Telefono>> Function() getTelefonos;
 
-  const TelefonoPage({super.key, required this.repository});
+  const TelefonoPage({super.key, required this.getTelefonos});
 
   @override
   Widget build(BuildContext context) {
     return DataListPage<Telefono>(
-      loader: repository.getTelefonos,
+      loader: getTelefonos,
       searchHint: 'Buscar telefono por numero o id',
       accentColor: Colors.green.shade700,
       matcher: (item, query) {
@@ -302,14 +328,14 @@ class TelefonoPage extends StatelessWidget {
 }
 
 class EstadocivilPage extends StatelessWidget {
-  final ApiRepository repository;
+  final Future<List<Estadocivil>> Function() getEstadosCiviles;
 
-  const EstadocivilPage({super.key, required this.repository});
+  const EstadocivilPage({super.key, required this.getEstadosCiviles});
 
   @override
   Widget build(BuildContext context) {
     return DataListPage<Estadocivil>(
-      loader: repository.getEstadosCiviles,
+      loader: getEstadosCiviles,
       searchHint: 'Buscar estado civil por nombre o ID',
       matcher: (item, query) {
         final q = query.toLowerCase();
@@ -327,14 +353,14 @@ class EstadocivilPage extends StatelessWidget {
 }
 
 class DireccionPage extends StatelessWidget {
-  final ApiRepository repository;
+  final Future<List<Direccion>> Function() getDirecciones;
 
-  const DireccionPage({super.key, required this.repository});
+  const DireccionPage({super.key, required this.getDirecciones});
 
   @override
   Widget build(BuildContext context) {
     return DataListPage<Direccion>(
-      loader: repository.getDirecciones,
+      loader: getDirecciones,
       searchHint: 'Buscar direccion, persona o ID',
       matcher: (item, query) {
         final q = query.toLowerCase();
@@ -352,14 +378,14 @@ class DireccionPage extends StatelessWidget {
 }
 
 class PersonaPage extends StatelessWidget {
-  final ApiRepository repository;
+  final Future<List<Persona>> Function() getPersonas;
 
-  const PersonaPage({super.key, required this.repository});
+  const PersonaPage({super.key, required this.getPersonas});
 
   @override
   Widget build(BuildContext context) {
     return DataListPage<Persona>(
-      loader: repository.getPersonas,
+      loader: getPersonas,
       searchHint: 'Buscar persona por nombre, apellido o fecha',
       matcher: (item, query) {
         final q = query.toLowerCase();
