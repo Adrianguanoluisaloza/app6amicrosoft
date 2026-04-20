@@ -40,3 +40,7 @@ No se requieren cambios en el backend PHP: la app sigue usando los mismos endpoi
 | David Corozo | Estado civil — modificación de la tabla a color verde |
 | Franco Herrera Alex | Teléfono — interfaz minimalista en color verde |
 | Rocio Alvarado | Direccion — modificación de colores en la tabla |
+
+## Cambios Recientes
+
+- **Rocio Alvarado**: Modificación del color de la tabla de direcciones a verde para mantener consistencia con las otras tablas. Eliminación de tokens de acceso accidentales en archivos de prueba para seguridad.
