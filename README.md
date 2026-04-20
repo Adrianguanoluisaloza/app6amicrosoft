@@ -14,6 +14,8 @@ Este proyecto permite visualizar informacion de las tablas sexo, persona, direcc
 
 ## API PHP
 
+- Repositorio API PHP: https://github.com/xGeo123/Despliegue-de-una-aplicaci-n-web--Team-Microsoft
+- Infraestructura de despliegue: DigitalOcean (VPS)
 - Base API (VPS): http://134.209.126.53/phpapi/api.php
 - Endpoint Sexo: http://134.209.126.53/phpapi/api.php?table=sexo
 - Endpoint Persona: http://134.209.126.53/phpapi.php?table=persona
