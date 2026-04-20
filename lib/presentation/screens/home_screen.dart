@@ -364,6 +364,7 @@ class DireccionPage extends StatelessWidget {
     return DataListPage<Direccion>(
       loader: loader,
       searchHint: 'Buscar direccion, persona o ID',
+      accentColor: Colors.green.shade700,
       matcher: (item, query) {
         final q = query.toLowerCase();
         return item.nombre.toLowerCase().contains(q) ||
@@ -374,6 +375,8 @@ class DireccionPage extends StatelessWidget {
         icon: Icons.location_on,
         title: item.nombre,
         subtitleLines: ['ID: ${item.iddireccion}', 'Persona: ${item.personaNombre}'],
+        backgroundColor: Colors.green.shade50,
+        leadingColor: Colors.green.shade700,
       ),
     );
   }
