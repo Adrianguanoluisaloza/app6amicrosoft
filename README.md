@@ -21,7 +21,7 @@ Este proyecto permite visualizar informacion de las tablas sexo, persona, direcc
 - Endpoint Telefono: http://134.209.126.53/phpapi.php?table=telefono
 - Endpoint Estado Civil: http://134.209.126.53/phpapi.php?table=estadocivil
 
-## Nota didactica sobre `api_repository.dart`
+## Nota didáctica sobre `api_repository.dart`
 
 Por solicitud del profesor, el consumo de API usado en ejecución se movió directamente a `lib/main.dart` para mostrar una estructura más básica en clase.
 

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -32,9 +33,15 @@ Future<List<T>> _fetchTable<T>({
   required String tableName,
   required T Function(Map<String, dynamic>) parser,
 }) async {
-  final response = await http
-      .get(_tableApiUri(tableName))
-      .timeout(const Duration(seconds: 10));
+  http.Response response;
+  try {
+    response = await http
+        .get(_tableApiUri(tableName))
+        .timeout(const Duration(seconds: 10));
+  } on TimeoutException {
+    throw Exception('Tiempo de espera agotado para tabla $tableName');
+  }
+
   if (response.statusCode != 200) {
     throw Exception(
       'API no disponible para tabla $tableName (${response.statusCode})',
