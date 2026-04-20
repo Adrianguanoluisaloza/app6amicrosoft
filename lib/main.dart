@@ -35,10 +35,13 @@ Future<List<T>> _fetchTable<T>({
       .get(_tableApiUri(tableName))
       .timeout(const Duration(seconds: 10));
   if (response.statusCode != 200) {
-    throw Exception('API no disponible (${response.statusCode})');
+    throw Exception(
+      'API no disponible para tabla $tableName (${response.statusCode})',
+    );
   }
 
-  return _extractItems(response.body).whereType<Map<String, dynamic>>().map(parser).toList();
+  final items = _extractItems(response.body);
+  return items.whereType<Map<String, dynamic>>().map(parser).toList();
 }
 
 Future<List<Sexo>> getSexos() {
