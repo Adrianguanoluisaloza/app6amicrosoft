@@ -37,3 +37,4 @@ No se requieren cambios en el backend PHP: la app sigue usando los mismos endpoi
 | Adrian Guanoluisa | Sexo — mejora visual de tarjetas, iconografia y estilo moderno |
 | David Corozo | Estado civil — modificación de la tabla a color verde |
 | Franco Herrera Alex | Teléfono — interfaz minimalista en color verde |
+| Rocio Alvarado | Direccion — modificación de colores en la tabla |
