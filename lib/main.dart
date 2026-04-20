@@ -7,6 +7,7 @@ import 'data/models.dart';
 import 'presentation/screens/home_screen.dart';
 import 'presentation/theme/app_theme.dart';
 
+// El backend académico disponible actualmente expone este endpoint en HTTP.
 const String _apiBaseUrl = 'http://134.209.126.53/phpapi/api.php';
 
 Uri _tableApiUri(String tableName) {
