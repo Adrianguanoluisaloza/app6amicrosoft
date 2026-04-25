@@ -14,14 +14,16 @@ Este proyecto permite visualizar informacion de las tablas sexo, persona, direcc
 
 ## API PHP
 
-- Repositorio API PHP: https://github.com/xGeo123/Despliegue-de-una-aplicaci-n-web--Team-Microsoft
-- Infraestructura de despliegue: DigitalOcean (VPS)
-- Base API (VPS): http://134.209.126.53/phpapi/api.php
-- Endpoint Sexo: http://134.209.126.53/phpapi/api.php?table=sexo
-- Endpoint Persona: http://134.209.126.53/phpapi.php?table=persona
-- Endpoint Direccion: http://134.209.126.53/phpapi.php?table=direccion
-- Endpoint Telefono: http://134.209.126.53/phpapi.php?table=telefono
-- Endpoint Estado Civil: http://134.209.126.53/phpapi.php?table=estadocivil
+- Repositorio API PHP: [OCULTO POR SEGURIDAD]
+- Infraestructura de despliegue: VPS privado
+- Base API: [OCULTO POR SEGURIDAD]
+- Endpoint Sexo: [OCULTO POR SEGURIDAD]
+- Endpoint Persona: [OCULTO POR SEGURIDAD]
+- Endpoint Direccion: [OCULTO POR SEGURIDAD]
+- Endpoint Telefono: [OCULTO POR SEGURIDAD]
+- Endpoint Estado Civil: [OCULTO POR SEGURIDAD]
+
+Nota: las direcciones reales del backend se manejan de forma privada y no se publican en documentación pública.
 
 ## Nota didáctica sobre `api_repository.dart`
 
